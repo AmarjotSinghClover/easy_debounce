@@ -28,7 +28,7 @@ class EasyThrottle {
   /// [duration] is the amount of time subsequent attempts will be ignored.
   ///
   /// Returns whether the operation was throttled
-  static Future<T>? throttle<T>(
+  static Future<T?> throttle<T>(
     String tag,
     Duration duration,
     EasyThrottleCallback<T> onExecute, {
@@ -36,7 +36,7 @@ class EasyThrottle {
   }) {
     var throttled = _operations.containsKey(tag);
     if (throttled) {
-      return null;
+      return Future.value(null);
     }
 
     _operations[tag] = _EasyThrottleOperation(
